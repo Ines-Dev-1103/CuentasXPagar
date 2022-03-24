@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cierre">
+    <Key>
+      <PropertyRef Name="id_cierre" />
+    </Key>
+    <Property Name="id_cierre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_parametros" Type="Int32" Nullable="false" />
+    <Property Name="monto" Type="Double" />
+    <NavigationProperty Name="Parametros" Relationship="Self.FK__Cierre__id_param__32E0915F" FromRole="Cierre" ToRole="Parametros" />
+  </EntityType>
+  <EntityType Name="ConceptosDePago">
+    <Key>
+      <PropertyRef Name="id_pago" />
+    </Key>
+    <Property Name="id_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK__Proveedor__id_pa__286302EC" FromRole="ConceptosDePago" ToRole="Proveedores" />
+  </EntityType>
+  <EntityType Name="DocumentosXPagar">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+    <Property Name="no_factura" Type="Int32" />
+    <Property Name="fecha_documento" Type="DateTime" Precision="0" />
+    <Property Name="fecha_de_registro" Type="DateTime" Precision="0" />
+    <Property Name="fecha_de_vencimiento" Type="DateTime" Precision="0" />
+    <Property Name="monto" Type="Double" />
+    <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK__Documento__id_pr__2B3F6F97" FromRole="DocumentosXPagar" ToRole="Proveedores" />
+  </EntityType>
+  <EntityType Name="GestionDePago">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proveedor" Type="Int32" />
+    <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_de_pago" Type="DateTime" Precision="0" />
+    <Property Name="monto" Type="Double" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK__GestionDe__id_pr__2E1BDC42" FromRole="GestionDePago" ToRole="Proveedores" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="privilegio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Parametros">
+    <Key>
+      <PropertyRef Name="id_parametro" />
+    </Key>
+    <Property Name="id_parametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mes_de_proceso" Type="DateTime" Precision="0" />
+    <Property Name="ano_de_proceso" Type="DateTime" Precision="0" />
+    <Property Name="cierre_ejecutado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cierre" Relationship="Self.FK__Cierre__id_param__32E0915F" FromRole="Parametros" ToRole="Cierre" />
+  </EntityType>
+  <EntityType Name="Proveedores">
+    <Key>
+      <PropertyRef Name="id_proveedor" />
+    </Key>
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_pago" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="cedula_RNC" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_de_persona" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="balance" Type="Double" />
+    <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ConceptosDePago" Relationship="Self.FK__Proveedor__id_pa__286302EC" FromRole="Proveedores" ToRole="ConceptosDePago" />
+    <NavigationProperty Name="DocumentosXPagar" Relationship="Self.FK__Documento__id_pr__2B3F6F97" FromRole="Proveedores" ToRole="DocumentosXPagar" />
+    <NavigationProperty Name="GestionDePago" Relationship="Self.FK__GestionDe__id_pr__2E1BDC42" FromRole="Proveedores" ToRole="GestionDePago" />
+  </EntityType>
+  <Association Name="FK__Cierre__id_param__32E0915F">
+    <End Role="Parametros" Type="Self.Parametros" Multiplicity="1" />
+    <End Role="Cierre" Type="Self.Cierre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parametros">
+        <PropertyRef Name="id_parametro" />
+      </Principal>
+      <Dependent Role="Cierre">
+        <PropertyRef Name="id_parametros" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Proveedor__id_pa__286302EC">
+    <End Role="ConceptosDePago" Type="Self.ConceptosDePago" Multiplicity="1" />
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConceptosDePago">
+        <PropertyRef Name="id_pago" />
+      </Principal>
+      <Dependent Role="Proveedores">
+        <PropertyRef Name="id_pago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__id_pr__2B3F6F97">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+    <End Role="DocumentosXPagar" Type="Self.DocumentosXPagar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="DocumentosXPagar">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GestionDe__id_pr__2E1BDC42">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+    <End Role="GestionDePago" Type="Self.GestionDePago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="GestionDePago">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cierre" EntityType="Self.Cierre" />
+    <EntitySet Name="ConceptosDePago" EntityType="Self.ConceptosDePago" />
+    <EntitySet Name="DocumentosXPagar" EntityType="Self.DocumentosXPagar" />
+    <EntitySet Name="GestionDePago" EntityType="Self.GestionDePago" />
+    <EntitySet Name="Login" EntityType="Self.Login" />
+    <EntitySet Name="Parametros" EntityType="Self.Parametros" />
+    <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+    <AssociationSet Name="FK__Cierre__id_param__32E0915F" Association="Self.FK__Cierre__id_param__32E0915F">
+      <End Role="Parametros" EntitySet="Parametros" />
+      <End Role="Cierre" EntitySet="Cierre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Proveedor__id_pa__286302EC" Association="Self.FK__Proveedor__id_pa__286302EC">
+      <End Role="ConceptosDePago" EntitySet="ConceptosDePago" />
+      <End Role="Proveedores" EntitySet="Proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__id_pr__2B3F6F97" Association="Self.FK__Documento__id_pr__2B3F6F97">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="DocumentosXPagar" EntitySet="DocumentosXPagar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GestionDe__id_pr__2E1BDC42" Association="Self.FK__GestionDe__id_pr__2E1BDC42">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="GestionDePago" EntitySet="GestionDePago" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

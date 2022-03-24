@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="Database">
+    <EntitySetMapping Name="Cierre">
+      <EntityTypeMapping TypeName="Models.Cierre">
+        <MappingFragment StoreEntitySet="Cierre">
+          <ScalarProperty Name="id_cierre" ColumnName="id_cierre" />
+          <ScalarProperty Name="id_parametros" ColumnName="id_parametros" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConceptosDePago">
+      <EntityTypeMapping TypeName="Models.ConceptosDePago">
+        <MappingFragment StoreEntitySet="ConceptosDePago">
+          <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentosXPagar">
+      <EntityTypeMapping TypeName="Models.DocumentosXPagar">
+        <MappingFragment StoreEntitySet="DocumentosXPagar">
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="no_factura" ColumnName="no_factura" />
+          <ScalarProperty Name="fecha_documento" ColumnName="fecha_documento" />
+          <ScalarProperty Name="fecha_de_registro" ColumnName="fecha_de_registro" />
+          <ScalarProperty Name="fecha_de_vencimiento" ColumnName="fecha_de_vencimiento" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GestionDePago">
+      <EntityTypeMapping TypeName="Models.GestionDePago">
+        <MappingFragment StoreEntitySet="GestionDePago">
+          <ScalarProperty Name="id_solicitud" ColumnName="id_solicitud" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_de_pago" ColumnName="fecha_de_pago" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="Models.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="privilegio" ColumnName="privilegio" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parametros">
+      <EntityTypeMapping TypeName="Models.Parametros">
+        <MappingFragment StoreEntitySet="Parametros">
+          <ScalarProperty Name="id_parametro" ColumnName="id_parametro" />
+          <ScalarProperty Name="mes_de_proceso" ColumnName="mes_de_proceso" />
+          <ScalarProperty Name="ano_de_proceso" ColumnName="ano_de_proceso" />
+          <ScalarProperty Name="cierre_ejecutado" ColumnName="cierre_ejecutado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedores">
+      <EntityTypeMapping TypeName="Models.Proveedores">
+        <MappingFragment StoreEntitySet="Proveedores">
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cedula_RNC" ColumnName="cedula_RNC" />
+          <ScalarProperty Name="tipo_de_persona" ColumnName="tipo_de_persona" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

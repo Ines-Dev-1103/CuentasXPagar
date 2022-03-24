@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cierre">
+    <Key>
+      <PropertyRef Name="id_cierre" />
+    </Key>
+    <Property Name="id_cierre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_parametros" Type="int" Nullable="false" />
+    <Property Name="monto" Type="float" />
+  </EntityType>
+  <EntityType Name="ConceptosDePago">
+    <Key>
+      <PropertyRef Name="id_pago" />
+    </Key>
+    <Property Name="id_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="1000" />
+    <Property Name="estado" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DocumentosXPagar">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" Nullable="false" />
+    <Property Name="no_factura" Type="int" />
+    <Property Name="fecha_documento" Type="date" />
+    <Property Name="fecha_de_registro" Type="date" />
+    <Property Name="fecha_de_vencimiento" Type="date" />
+    <Property Name="monto" Type="float" />
+    <Property Name="estado" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="GestionDePago">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="1000" />
+    <Property Name="fecha_de_pago" Type="date" />
+    <Property Name="monto" Type="float" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="60" />
+    <Property Name="privilegio" Type="varchar" MaxLength="10" />
+    <Property Name="contraseña" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Parametros">
+    <Key>
+      <PropertyRef Name="id_parametro" />
+    </Key>
+    <Property Name="id_parametro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mes_de_proceso" Type="date" />
+    <Property Name="ano_de_proceso" Type="date" />
+    <Property Name="cierre_ejecutado" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Proveedores">
+    <Key>
+      <PropertyRef Name="id_proveedor" />
+    </Key>
+    <Property Name="id_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_pago" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="80" />
+    <Property Name="cedula_RNC" Type="char" MaxLength="15" />
+    <Property Name="tipo_de_persona" Type="varchar" MaxLength="15" />
+    <Property Name="balance" Type="float" />
+    <Property Name="estado" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Cierre__id_param__32E0915F">
+    <End Role="Parametros" Type="Self.Parametros" Multiplicity="1" />
+    <End Role="Cierre" Type="Self.Cierre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parametros">
+        <PropertyRef Name="id_parametro" />
+      </Principal>
+      <Dependent Role="Cierre">
+        <PropertyRef Name="id_parametros" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__id_pr__2B3F6F97">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+    <End Role="DocumentosXPagar" Type="Self.DocumentosXPagar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="DocumentosXPagar">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GestionDe__id_pr__2E1BDC42">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+    <End Role="GestionDePago" Type="Self.GestionDePago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="GestionDePago">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Proveedor__id_pa__286302EC">
+    <End Role="ConceptosDePago" Type="Self.ConceptosDePago" Multiplicity="1" />
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConceptosDePago">
+        <PropertyRef Name="id_pago" />
+      </Principal>
+      <Dependent Role="Proveedores">
+        <PropertyRef Name="id_pago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="Cierre" EntityType="Self.Cierre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConceptosDePago" EntityType="Self.ConceptosDePago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentosXPagar" EntityType="Self.DocumentosXPagar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GestionDePago" EntityType="Self.GestionDePago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Cierre__id_param__32E0915F" Association="Self.FK__Cierre__id_param__32E0915F">
+      <End Role="Parametros" EntitySet="Parametros" />
+      <End Role="Cierre" EntitySet="Cierre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__id_pr__2B3F6F97" Association="Self.FK__Documento__id_pr__2B3F6F97">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="DocumentosXPagar" EntitySet="DocumentosXPagar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GestionDe__id_pr__2E1BDC42" Association="Self.FK__GestionDe__id_pr__2E1BDC42">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="GestionDePago" EntitySet="GestionDePago" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Proveedor__id_pa__286302EC" Association="Self.FK__Proveedor__id_pa__286302EC">
+      <End Role="ConceptosDePago" EntitySet="ConceptosDePago" />
+      <End Role="Proveedores" EntitySet="Proveedores" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
