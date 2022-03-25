@@ -8,16 +8,17 @@
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script  type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <link type="text/css" href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light  navbar-fixed-top"  style="background-color: #1F74AD;">
+    <nav class="navbar navbar-expand-lg navbar-light  navbar-fixed-top" style="background-color: #1F74AD;">
         <div class="container-fluid">
             <a class="navbar-brand  btn bg-dark text-light" href="#"><i class="fa-solid fa-gauge"></i> Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto d-grid gap-2 d-md-block" >
+                <ul class="navbar-nav me-auto d-grid gap-2 d-md-block">
                     <!--Mantenimientos-->
                     <li class="nav-item dropdown btn bg-dark">
                         <a class="nav-link dropdown-toggle  text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,11 +26,11 @@
                         </a>
                         <!--subitems de Mant-->
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Entrada de Docs x pagar</a></li>
-                            <li><a class="dropdown-item" href="#">Conceptos</a></li>
-                            <li><a class="dropdown-item" href="#">Provedores</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-file-signature"></i> Entrada de Docs x pagar</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-list"></i> Conceptos</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-id-card-clip"></i> Provedores</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Parámetros</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-day"></i>Parámetros</a></li>
                         </ul>
                     </li>
                     <!--Procesos-->
@@ -39,8 +40,8 @@
                         </a>
                         <!--subitems de Proc-->
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Pagos de cuenta</a></li>
-                            <li><a class="dropdown-item" href="#">Cierre</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cash-register"></i> Pagos de cuenta</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-lock"></i> Cierre</a></li>
                             <li><hr class="dropdown-divider"></li>
                         </ul>
                     </li>
@@ -80,21 +81,21 @@
                             <li><hr class="dropdown-divider"></li>
                         </ul>
                     </li>
-                   
+
                 </ul>
                 <ul>
-                    <button class="btn bg-dark text-danger" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+                    @*<button class="btn bg-dark text-danger" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>*@
 
 
 
                 </ul>
-                
+
             </div>
         </div>
     </nav>
 
-  
-                    @*<div class="navbar navbar-inverse navbar-fixed-top">
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -113,16 +114,54 @@
                 </div>
             </div>
         </div>*@
-                    <div class="container body-content">
-                        @RenderBody()
-                        <hr />
-                        <footer>
-                            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                        </footer>
-                    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
 
-                    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
-                    @RenderSection("scripts", required: false)
+    </div>
+    @RenderSection("scripts", required: false)
+    <!--footer-->
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: #ffffff;
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+    </style>
+    <div class="container-fluid fixed-bottom">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top text-light" style="background-color:rgb(10, 38, 57)">
+            <p class="col-md-4 mb-0 ">&copy; @DateTime.Now.Year - Pagarix Application</p>
+
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+      @Scripts.Render("~/bundles/bootstrap")*@
+
 </body>
 </html>
