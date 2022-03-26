@@ -26,6 +26,7 @@ _Para obtener una copia del proyecto, favor clonar el repositorio._
 
 
 Images
+
 ![image](https://user-images.githubusercontent.com/56055575/160222359-d34a2843-9d6a-49d4-8c3d-566737cd3a57.png)
 ![image](https://user-images.githubusercontent.com/56055575/160222381-eb2a2c05-0bbc-48a8-bbbf-daff79a515ca.png)
 
