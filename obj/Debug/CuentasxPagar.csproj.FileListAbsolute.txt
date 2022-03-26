@@ -83,3 +83,5 @@ C:\CXP\CuentasxPagar\CuentasxPagar\obj\Debug\CuentasxPagar.dll
 C:\CXP\CuentasxPagar\CuentasxPagar\obj\Debug\CuentasxPagar.pdb
 C:\Users\adrie\Documents\GitHub\CuentasXPagar\obj\Debug\CuentasxPagar.dll
 C:\Users\adrie\Documents\GitHub\CuentasXPagar\obj\Debug\CuentasxPagar.pdb
+C:\Users\LENOVO\workspace\CuentasXPagar\obj\Debug\CuentasxPagar.dll
+C:\Users\LENOVO\workspace\CuentasXPagar\obj\Debug\CuentasxPagar.pdb
